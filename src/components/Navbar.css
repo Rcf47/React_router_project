@@ -1,0 +1,14 @@
+:root {
+  --main-bg-color: #FFF7ED;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 112px;
+  background-color: var(--main-bg-color);
+}
+
+.navbar-wrapper {
+  display: flex;
+}
