@@ -2,8 +2,8 @@ import { Link } from "react-router-dom"
 
 function VanCard(props) {
   return (
-    <div key={props.key} className="van-tile">
-      <Link to={`${props.key}`}>
+    <div id={props.id} className="van-tile">
+      <Link to={`${props.id}`}>
 
         <img src={props.img} />
         <div className="van-info">

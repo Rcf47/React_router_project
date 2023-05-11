@@ -9,9 +9,11 @@ function Vans() {
       .then((data) =>
         setAllCards(
           data.vans.map((item) => {
+            console.log(item)
             return (
-              <VanCard
+              < VanCard
                 key={item.id}
+                id={item.id}
                 img={item.imageUrl}
                 name={item.name}
                 price={item.price}
