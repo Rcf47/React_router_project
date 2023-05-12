@@ -1,7 +1,6 @@
 function Footer() {
   return (
-    <h1>Vanlife footer</h1>
-  )
+    <footer>&#169; 2022 #VANLIFE</footer>)
 }
 
 export default Footer
