@@ -1,6 +1,4 @@
 import { Link } from 'react-router-dom'
-import Footer from "./Footer"
-import Navbar from "./Navbar"
 import bgImg from "../assets/images/about-hero.png"
 
 function About() {
