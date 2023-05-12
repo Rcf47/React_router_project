@@ -11,6 +11,7 @@ function HostLayout() {
       <nav className="host-nav">
         <NavLink style={({ isActive }) => isActive ? activeHostNavLink : null} end to="/host">Dashboard</NavLink>
         <NavLink style={({ isActive }) => isActive ? activeHostNavLink : null} to="/host/income">Income</NavLink>
+        <NavLink style={({ isActive }) => isActive ? activeHostNavLink : null} to="/host/vans">Vans</NavLink>
         <NavLink style={({ isActive }) => isActive ? activeHostNavLink : null} to="/host/reviews">Reviews</NavLink>
       </nav>
       <Outlet />
