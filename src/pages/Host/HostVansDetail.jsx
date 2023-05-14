@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams, Link } from "react-router-dom"
+import { useParams, Link, Outlet, NavLink } from "react-router-dom"
 
 function HostVansDetail() {
   const { id } = useParams()
@@ -16,28 +16,36 @@ function HostVansDetail() {
   }
 
   return (
-    <section>
-      <Link
-        to=".."
-        relative="path"
-        className="back-button"
-      >&larr; <span>Back to all vans</span></Link>
+    <>
+      <section>
+        <Link
+          to=".."
+          relative="path"
+          className="back-button"
+        >&larr; <span>Back to all vans</span></Link>
 
-      <div className="host-van-detail-layout-container">
-        <div className="host-van-detail">
-          <img src={currentVan.imageUrl} />
-          <div className="host-van-detail-info-text">
-            <i
-              className={`van-type van-type-${currentVan.type}`}
-            >
-              {currentVan.type}
-            </i>
-            <h3>{currentVan.name}</h3>
-            <h4>${currentVan.price}/day</h4>
+        <div className="host-van-detail-layout-container">
+          <div className="host-van-detail">
+            <img src={currentVan.imageUrl} />
+            <div className="host-van-detail-info-text">
+              <i
+                className={`van-type van-type-${currentVan.type}`}
+              >
+                {currentVan.type}
+              </i>
+              <h3>{currentVan.name}</h3>
+              <h4>${currentVan.price}/day</h4>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <nav>
+        <NavLink to="." end>Details</NavLink>
+        <NavLink to="pricing">Pricing</NavLink>
+        <NavLink to="photos">Photos</NavLink>
+      </nav>
+      <Outlet />
+    </>
   )
 }
 
