@@ -8,8 +8,8 @@ function Layout() {
       <Header />
       <main>
         <Outlet />
-        <Footer />
       </main>
+      <Footer />
     </>
   )
 }
