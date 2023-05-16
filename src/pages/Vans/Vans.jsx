@@ -34,12 +34,13 @@ function Vans() {
   return (
     <div className="van-list-container">
       <h1>Explore our van options</h1>
-      <Link to="?type=simple" className="van-type simple">Simple</Link>
-      <Link to="?type=luxury" className="van-type luxury">Luxury</Link>
-      <Link to="?type=rugged" className="van-type rugged">Rugged</Link>
-      <Link to="." className="van-type clear-filters">Clear filter</Link>
+      <button onClick={() => setSearchParams({ type: "simple" })} className="van-type simple">Simple</button>
+      <button onClick={() => setSearchParams({ type: "luxury" })} className="van-type luxury">Luxury</button>
+      <button onClick={() => setSearchParams({ type: "rugged" })} className="van-type rugged">Rugged</button>
+      {typeFilter ? (<button onClick={() => setSearchParams({})} className="van-type clear-filters">Clear filter</button>) : null
+      }
       <div className="van-list">{displayedVans}</div>
-    </div>
+    </div >
   );
 }
 
