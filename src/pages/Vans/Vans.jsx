@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import VanCard from "../../components/VanCard";
-import { useSearchParams } from "react-router-dom";
+import VanCard from "./VanCard.jsx";
+import { Link, useSearchParams } from "react-router-dom";
 
 function Vans() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -34,6 +34,10 @@ function Vans() {
   return (
     <div className="van-list-container">
       <h1>Explore our van options</h1>
+      <Link to="?type=simple" className="van-type simple">Simple</Link>
+      <Link to="?type=luxury" className="van-type luxury">Luxury</Link>
+      <Link to="?type=rugged" className="van-type rugged">Rugged</Link>
+      <Link to="." className="van-type clear-filters">Clear filter</Link>
       <div className="van-list">{displayedVans}</div>
     </div>
   );
