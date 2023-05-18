@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import VanCard from "./VanCard.jsx";
 import { useSearchParams } from "react-router-dom";
+import getVans from "../../api.js";
 
 function Vans() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -28,9 +29,12 @@ function Vans() {
     : vansElements;
 
   useEffect(() => {
-    fetch("/api/vans")
-      .then((res) => res.json())
-      .then((data) => setAllCards(data.vans));
+    async function loadVans() {
+      const data = await getVans()
+      setAllCards(data)
+    }
+
+    loadVans()
   }, []);
 
   function handleFilterChange(key, value) {
