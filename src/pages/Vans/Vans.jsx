@@ -6,6 +6,8 @@ import getVans from "../../api.js";
 function Vans() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [allCards, setAllCards] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const typeFilter = searchParams.get("type");
 
   const vansElements = allCards.map((item) => {
@@ -30,8 +32,15 @@ function Vans() {
 
   useEffect(() => {
     async function loadVans() {
-      const data = await getVans()
-      setAllCards(data)
+      setLoading(true)
+      try {
+        const data = await getVans()
+        setAllCards(data)
+      } catch (error) {
+        setError(error)
+      } finally {
+        setLoading(false)
+      }
     }
 
     loadVans()
@@ -48,6 +57,12 @@ function Vans() {
     });
   }
 
+  if (loading) {
+    return <h1>Loading...</h1>
+  }
+  if (error) {
+    return <h1>There was a error: {error.message}</h1>
+  }
   return (
     <div className="van-list-container">
       <h1>Explore our van options</h1>
