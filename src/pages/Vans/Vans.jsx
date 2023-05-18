@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import VanCard from "./VanCard.jsx";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 function Vans() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -21,7 +21,6 @@ function Vans() {
     );
   });
 
-  console.log(vansElements);
   const displayedVans = typeFilter
     ? vansElements.filter(
       (char) => char.props.type.toLowerCase() === typeFilter

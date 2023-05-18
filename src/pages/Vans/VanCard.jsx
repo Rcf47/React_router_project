@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom"
+import { Link, useSearchParams } from "react-router-dom"
 
 function VanCard(props) {
+  const [searchParams, setSearchParams] = useSearchParams()
   return (
     <div id={props.id} className="van-tile">
-      <Link to={props.id}>
+      <Link to={props.id} state={{ search: `?${searchParams.toString()}` }}>
         <img src={props.img} />
         <div className="van-info">
           <h3>{props.name}</h3>
