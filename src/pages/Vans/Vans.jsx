@@ -3,6 +3,9 @@ import VanCard from "./VanCard.jsx";
 import { useSearchParams } from "react-router-dom";
 import getVans from "../../api.js";
 
+export function loader() {
+  return 'Vans data goes here'
+}
 function Vans() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [allCards, setAllCards] = useState([]);
