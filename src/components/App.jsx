@@ -4,7 +4,7 @@ import Home from '../pages/Home'
 import About from '../pages/About'
 import "../server"
 import Vans, { loader as vansLoader } from '../pages/Vans/Vans'
-import VanDetail from '../pages/Vans/VanDetail'
+import VanDetail, { loader as vanDetailLoader } from '../pages/Vans/VanDetail'
 import Layout from './Layout'
 import Dashboard from '../pages/Host/Dashboard'
 import Income from '../pages/Host/Income'
@@ -25,7 +25,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="about" element={<About />} />
     <Route path="login" element={<Login />} />
     <Route path="vans" element={<Vans />} loader={vansLoader} />
-    <Route path="vans/:id" element={<VanDetail />} />
+    <Route path="vans/:id" element={<VanDetail />} loader={vanDetailLoader} />
     <Route path="host" element={<HostLayout />}>
       <Route index element={<Dashboard />} loader={async () => {
         return null
