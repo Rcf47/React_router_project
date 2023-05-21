@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import VanCard from "./VanCard.jsx";
 import { useLoaderData, useSearchParams } from "react-router-dom";
-import getVans from "../../api.js";
+import { getVans } from "../../api.js";
 
 export function loader() {
   return getVans()

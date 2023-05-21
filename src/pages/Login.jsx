@@ -1,5 +1,6 @@
 import React from "react"
 import { useLoaderData } from "react-router-dom"
+import { loginUser } from "../api"
 
 export async function loader({ request }) {
   const message = new URL(request.url).searchParams.get("message")
@@ -10,7 +11,8 @@ export default function Login() {
   const message = useLoaderData()
   function handleSubmit(e) {
     e.preventDefault()
-    console.log(loginFormData)
+    loginUser(loginFormData)
+      .then(data => console.log(data))
   }
 
   function handleChange(e) {
