@@ -25,7 +25,7 @@ import HostVanPhotos from "../pages/Host/HostVanPhotos";
 import HostVanInfo from "../pages/Host/HostVanInfo";
 import NotFound from "../pages/NotFound";
 import Error from "./Error";
-import Login from "../pages/Login";
+import Login, { loader as loginLoader } from "../pages/Login";
 import { requireAuth } from "../utils";
 
 const router = createBrowserRouter(
@@ -33,7 +33,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<Layout />} errorElement={<Error />} >
       <Route index element={<Home />} />
       <Route path="about" element={<About />} />
-      <Route path="login" element={<Login />} />
+      <Route path="login" element={<Login />} loader={loginLoader} />
       <Route
         path="vans"
         element={<Vans />}
