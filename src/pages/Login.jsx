@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLoaderData, Form } from "react-router-dom";
+import { useLoaderData, Form, redirect } from "react-router-dom";
 import { loginUser } from "../api";
 
 export async function loader({ request }) {
@@ -7,28 +7,23 @@ export async function loader({ request }) {
   return message;
 }
 
-export async function action() {
-  console.log("Action function")
-  return null
+export async function action({ request }) {
+  const formData = await request.formData()
+  const email = formData.get("email")
+  const password = formData.get("password")
+  const data = await loginUser({ email, password })
+  localStorage.setItem("loggedin", true)
+  const response = redirect("/host")
+  response.body = true
+  return response
 }
 
 export default function Login() {
-  const [loginFormData, setLoginFormData] = React.useState({
-    email: "",
-    password: "",
-  });
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState(null);
   const message = useLoaderData();
 
 
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setLoginFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  }
 
   return (
     <div className="login-container">
@@ -38,17 +33,13 @@ export default function Login() {
       <Form method="post" className="login-form">
         <input
           name="email"
-          onChange={handleChange}
           type="email"
           placeholder="Email address"
-          value={loginFormData.email}
         />
         <input
           name="password"
-          onChange={handleChange}
           type="password"
           placeholder="Password"
-          value={loginFormData.password}
         />
         <button disabled={status === "submitting"}>
           {status === "submitting" ? "Logging in..." : "Log in"}
