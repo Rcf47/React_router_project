@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useLoaderData, Form, redirect, useActionData } from "react-router-dom";
+import { useLoaderData, Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { loginUser } from "../api";
 
 export async function loader({ request }) {
@@ -24,9 +23,9 @@ export async function action({ request }) {
 }
 
 export default function Login() {
-  const [status, setStatus] = useState("idle");
   const message = useLoaderData();
   const actionMessage = useActionData()
+  const navigation = useNavigation()
 
 
   return (
@@ -45,8 +44,8 @@ export default function Login() {
           type="password"
           placeholder="Password"
         />
-        <button disabled={status === "submitting"}>
-          {status === "submitting" ? "Logging in..." : "Log in"}
+        <button disabled={navigation.state === "submitting"}>
+          {navigation.state === "submitting" ? "Logging in..." : "Log in"}
         </button>
       </Form>
     </div>
