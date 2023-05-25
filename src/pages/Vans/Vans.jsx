@@ -1,18 +1,19 @@
 import { useState } from "react";
 import VanCard from "./VanCard.jsx";
-import { useLoaderData, useSearchParams } from "react-router-dom";
+import { Await, defer, useLoaderData, useSearchParams } from "react-router-dom";
 import { getVans } from "../../api.js";
 
 export function loader() {
-  return getVans()
+  return defer({ data: getVans() })
 }
 function Vans() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [error, setError] = useState(null);
   const typeFilter = searchParams.get("type");
-  const data = useLoaderData()
-  const vansElements = data.map((item) => {
+  const dataPromise = useLoaderData()
+  const vansElements = dataPromise.map((item) => {
     return (
+
       <VanCard
         key={item.id}
         id={item.id}
@@ -47,6 +48,7 @@ function Vans() {
     return <h1>There was a error: {error.message}</h1>
   }
   return (
+
     <div className="van-list-container">
       <h1>Explore our van options</h1>
       <button
