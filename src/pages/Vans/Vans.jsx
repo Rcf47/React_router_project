@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Suspense } from "react"
 import {
   Link,
   useSearchParams,
@@ -103,10 +103,12 @@ export default function Vans() {
   return (
     <div className="van-list-container">
       <h1>Explore our van options</h1>
-      <Await resolve={dataPromise.vans}>
-        {renderVanElements}
+      <Suspense fallback={<h2>Loading vans...</h2>}>
+        <Await resolve={dataPromise.vans}>
+          {renderVanElements}
 
-      </Await>
+        </Await>
+      </Suspense>
     </div>
   )
 }
