@@ -17,7 +17,6 @@ export function HostVansDetail() {
   }
 
   function renderHostVansDetail(currentVan) {
-    console.log(currentVan)
     return (
       <div className="host-van-detail-layout-container">
         <div className="host-van-detail">
