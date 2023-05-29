@@ -1,11 +1,11 @@
 import { Link, Outlet, NavLink, useLoaderData, defer, Await } from "react-router-dom"
-import { getHostVans } from "../../api"
+import { getVan } from "../../api"
 import { requireAuth } from "../../utils"
 import { Suspense } from "react"
 
 export async function loader({ params, request }) {
   await requireAuth(request)
-  return defer({ currentVan: getHostVans(params.id) })
+  return defer({ currentVan: getVan(params.id) })
 }
 export function HostVansDetail() {
   const currentVanPromise = useLoaderData()
@@ -20,7 +20,7 @@ export function HostVansDetail() {
     return (
       <div className="host-van-detail-layout-container">
         <div className="host-van-detail">
-          <img src={currentVan.imageUrl} />
+          <img src={currentVan.imageURL} />
           <div className="host-van-detail-info-text">
             <i
               className={`van-type van-type-${currentVan.type}`}
