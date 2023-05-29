@@ -1,9 +1,9 @@
 import { Link, useLocation, useLoaderData, defer, Await } from "react-router-dom"
-import { getVans } from "../../api.js"
+import { getVan } from "../../api.js"
 import { Suspense } from "react"
 
 export function loader({ params }) {
-  return defer({ van: getVans(params.id) })
+  return defer({ van: getVan(params.id) })
 }
 function VanDetail() {
   const location = useLocation()
@@ -14,7 +14,6 @@ function VanDetail() {
   const type = location.state?.type || "all"
 
   function renderVanDetail(van) {
-    console.log(van.van)
     return (
       <div className="van-detail-container">
         <Link
@@ -23,7 +22,7 @@ function VanDetail() {
           className="back-button"
         >&larr; <span>Back to {`${type}`} vans</span></Link>
         <div className="van-detail">
-          <img src={van.imageUrl} />
+          <img src={van.imageURL} />
           <i className={`van-type ${van.type} selected`}>{van.type}</i>
           <h2>{van.name}</h2>
           <p className="van-price"><span>${van.price}</span>/day</p>

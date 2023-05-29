@@ -47,7 +47,7 @@ export default function Vans() {
             type: typeFilter
           }}
         >
-          <img src={van.imageUrl} />
+          <img src={van.imageURL} />
           <div className="van-info">
             <h3>{van.name}</h3>
             <p>${van.price}<span>/day</span></p>
